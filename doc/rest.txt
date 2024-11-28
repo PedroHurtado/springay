@@ -1,0 +1,49 @@
+1. Create
+    path:"/ingredients"
+    method:POST
+    request 
+        body
+        headers->application/json
+    response
+        body
+        headers->application/json
+    OK    
+    201
+
+2. GetAll
+    path:"/ingredients"
+    method:GET    
+    response
+        body []
+        headers->application/json
+    OK    
+    200-> si no hay elementos array vacia
+3. GetById
+    path:"/ingredients/{id}"
+    method:GET    
+    response
+        body {}
+        headers->application/json
+    OK    
+    200-> si existe
+    404-> si no existe
+
+4. Update
+    path:"/ingredients/{id}"
+    method:PUT    
+    request 
+        body
+        headers->application/json
+    response or empty
+        body {}
+        headers->application/json
+    OK    
+    204-> si existe y el contenido es el mismo del request
+    200-> si existe y el contenido es distinto al request
+    404-> si no existe
+5. Update
+    path:"/ingredients/{id}"
+    method:DELETE       
+    OK    
+    204->si ha sido eliminado    
+    404-> si no existe

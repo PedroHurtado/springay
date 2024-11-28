@@ -1,0 +1,32 @@
+//POST
+const request = {name:'tomate', cost:1.2}
+const response = await fetch('http://localhost:8080/ingredients',{
+ method:'POST',
+ headers:{
+    'content-type':'application/json'
+ },
+ body:JSON.stringify(request)
+})
+const data = await response.json()
+//GET
+const response = await fetch('http://localhost:8080/ingredients',{method:'GET'})
+const data = await response.json()
+//GET BY ID
+//const response = await fetch('http://localhost:8080/ingredients/10fb6371-6fdd-4204-9795-a66a932a6bc7',{method:'GET'})
+
+const response = await fetch('http://localhost:8080/ingredients/67f55b5e-8ad2-4f14-b583-116ca58cc7ab',{method:'GET'})
+if(response.status ===200){
+    const data = await response.json()
+}
+
+//PUT
+
+const request = {name:'tomate', cost:1.4}
+const response = await fetch('http://localhost:8080/ingredients/67f55b5e-8ad2-4f14-b583-116ca58cc7ab',{
+ method:'PUT',
+ headers:{
+    'content-type':'application/json'
+ },
+ body:JSON.stringify(request)
+})
+
