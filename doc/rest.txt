@@ -41,7 +41,7 @@
     204-> si existe y el contenido es el mismo del request
     200-> si existe y el contenido es distinto al request
     404-> si no existe
-5. Update
+5. Delete
     path:"/ingredients/{id}"
     method:DELETE       
     OK    
