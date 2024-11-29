@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.HashSet;
-import java.util.Optional;
+
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Stream;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.core.customexception.NotFounException;
 import com.example.demo.domain.Ingredient;
 
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-
 
 @RestController
 public class IngredientController {
@@ -38,7 +38,7 @@ public class IngredientController {
 
         ingredients.add(ingredient); // GUARDAR EN UNA BB.DD
 
-        ResponseIngredient responseBody= new ResponseIngredient(
+        ResponseIngredient responseBody = new ResponseIngredient(
                 ingredient.getId(),
                 ingredient.getName(),
                 ingredient.getCost());
@@ -57,49 +57,33 @@ public class IngredientController {
 
     @GetMapping("/ingredients/{id}")
     public ResponseEntity<?> get(@PathVariable UUID id) {
-        Optional<Ingredient> ingredientOptional = getIgredient(id);
-        if (ingredientOptional.isPresent()){
-            Ingredient ingredient = ingredientOptional.get();
-            return ResponseEntity.ok(
+        Ingredient ingredient = getIgredient(id);
+        return ResponseEntity.ok(
                 new ResponseIngredient(
-                    ingredient.getId(), 
-                    ingredient.getName(), 
-                    ingredient.getCost()
-                )
-            );
-        }
-        return ResponseEntity.notFound().build();
-    }
-    @PutMapping("ingredients/{id}")        
-    ResponseEntity<?> update(@PathVariable UUID id, @RequestBody RequestIngredients requestIngredients){
-        Optional<Ingredient> ingredientOptional = getIgredient(id);
-        
-        if(!ingredientOptional.isPresent()){
-            return ResponseEntity.notFound().build(); //404
-        }
-
-        Ingredient ingredient = ingredientOptional.get();
-        ingredient.update(requestIngredients.name(), requestIngredients.cost());       
-        return ResponseEntity.noContent().build(); //204
+                        ingredient.getId(),
+                        ingredient.getName(),
+                        ingredient.getCost()));
     }
 
-    @DeleteMapping("ingredients/{id}")        
-    ResponseEntity<?> remove(@PathVariable UUID id){
-        Optional<Ingredient> ingredientOptional = getIgredient(id);
-        
-        if(!ingredientOptional.isPresent()){
-            return ResponseEntity.notFound().build(); //404
-        }
+    @PutMapping("ingredients/{id}")
+    ResponseEntity<?> update(@PathVariable UUID id, @RequestBody RequestIngredients requestIngredients) {
+        Ingredient ingredient = getIgredient(id);
+        ingredient.update(requestIngredients.name(), requestIngredients.cost());
+        return ResponseEntity.noContent().build(); // 204
+    }
 
-        Ingredient ingredient = ingredientOptional.get();
+    @DeleteMapping("ingredients/{id}")
+    ResponseEntity<?> remove(@PathVariable UUID id) {
+        Ingredient ingredient = getIgredient(id);     
         ingredients.remove(ingredient);
-        return ResponseEntity.noContent().build(); //204
+        return ResponseEntity.noContent().build(); // 204
     }
 
-
-    private Optional<Ingredient> getIgredient(UUID id){
+    private Ingredient getIgredient(UUID id) {
         return ingredients.stream()
-        .filter(i->i.getId().equals(id))
-        .findFirst();
+                .filter(i -> i.getId().equals(id))
+                .findFirst().orElseThrow(() -> {
+                    throw new NotFounException();
+                });
     }
 }

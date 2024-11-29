@@ -1,0 +1,10 @@
+Global Handler Exception
+Optional->exceptio->customException
+
+Controlador		->request->response
+Servicio		->
+		validacion
+		transacion	
+		logger
+Persistencia
+		Grabar en bb.dd(memoria)

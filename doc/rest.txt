@@ -1,3 +1,22 @@
+url api rest
+    1. Tengo que pluralizar la url
+        pizza->/pizzas
+    2. No tengo que expresar acciones
+        /pizzas/add         /pizzas->POST
+        /pizzas/update      /pizzas/{id}->PUT
+        /pizzas/get         /pizzas/{id}->GET
+        /pizzas/getall      /pizzas->GET
+        /pizzas/remove      /pizzas/{id}->DELETE
+    3. No tengo que expresar formatos
+        /pizzas.json
+        /pizzas.xml
+
+        content-type
+        accept
+
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+    https://developer.mozilla.org/en-US/docs/Web/HTTP/MIME_types
+
 1. Create
     path:"/ingredients"
     method:POST
