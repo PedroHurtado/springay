@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 public class IngredientController {
@@ -65,13 +65,7 @@ public class IngredientController {
                         ingredient.getCost()));
     }
 
-    @PutMapping("ingredients/{id}")
-    ResponseEntity<?> update(@PathVariable UUID id, @RequestBody RequestIngredients requestIngredients) {
-        Ingredient ingredient = getIgredient(id);
-        ingredient.update(requestIngredients.name(), requestIngredients.cost());
-        return ResponseEntity.noContent().build(); // 204
-    }
-
+   
     @DeleteMapping("ingredients/{id}")
     ResponseEntity<?> remove(@PathVariable UUID id) {
         Ingredient ingredient = getIgredient(id);     
