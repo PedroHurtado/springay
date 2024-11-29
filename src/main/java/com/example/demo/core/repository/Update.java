@@ -1,6 +1,8 @@
 package com.example.demo.core.repository;
 
-public interface Update<T,ID> extends Get<T,ID> {
+import com.example.demo.domain.EntityBase;
+
+public interface Update<T extends EntityBase,ID> extends Get<T,ID> {
     default void update(T entity){
         getData().remove(entity);
         getData().add(entity);

@@ -8,3 +8,18 @@ Servicio		->
 		logger
 Persistencia
 		Grabar en bb.dd(memoria)
+
+02-12-2024
+
+Valicacion
+	https://mvallim.github.io/java-fluent-validator/
+	Query
+
+	/ingredients->[]
+	/ingredients?name=car -> queryString
+
+	http://localhost:8080/ingredients/53f36320-71fa-492d-b12a-41f0f3cbc5ca/52803357A
+
+	GET->datos confidenciales headers
+
+	H2(BB.DD) in memory

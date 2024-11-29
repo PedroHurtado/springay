@@ -12,8 +12,7 @@ import com.example.demo.domain.IngredientRepository;
 @Component
 public class RepositoryIngredientImp implements IngredientRepository {
 
-    private final static Set<Ingredient> ingredients = new HashSet<>();
-
+    private final static Set<Ingredient> ingredients = new HashSet<>();   
     @Override
     public Set<Ingredient> getData() {
         return ingredients;

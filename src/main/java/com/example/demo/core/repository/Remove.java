@@ -1,6 +1,8 @@
 package com.example.demo.core.repository;
 
-public interface Remove<T,ID> extends Get<T,ID> {
+import com.example.demo.domain.EntityBase;
+
+public interface Remove<T extends EntityBase,ID> extends Get<T,ID> {
     default void remove(T entity){
         getData().remove(entity);
     }

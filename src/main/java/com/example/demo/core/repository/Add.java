@@ -1,6 +1,8 @@
 package com.example.demo.core.repository;
 
-public interface Add<T> extends Collection<T> {
+import com.example.demo.domain.EntityBase;
+
+public interface Add<T extends EntityBase> extends Collection<T> {
     default void add(T entity){
         getData().add(entity);
     }

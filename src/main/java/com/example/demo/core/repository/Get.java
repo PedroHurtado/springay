@@ -1,15 +1,16 @@
 package com.example.demo.core.repository;
 
 import com.example.demo.core.customexception.NotFounException;
+import com.example.demo.domain.EntityBase;
 
-@SuppressWarnings("unlikely-arg-type")
-public interface Get<T,ID> extends Collection<T> {
-    default T get(ID id){
-        return getData().stream()
-            .filter(i->i.equals(id))
-            .findFirst()
-            .orElseThrow(()->{
-                throw new NotFounException();
-            });
+
+public interface Get<T extends EntityBase, ID> extends Collection<T> {
+    default T get(ID id) {
+               return getData().stream()
+                .filter(i -> i.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> {
+                    throw new NotFounException();
+                });
     }
 }
