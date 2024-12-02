@@ -17,11 +17,18 @@ public class Pizza extends EntityBase {
 
     //constructor protected para no poder crear instancias
     //sino es por el metodo static interno(create)
-    protected Pizza(UUID id, String name,String description,String url){
+    protected Pizza(
+            UUID id, 
+            String name,
+            String description,
+            String url,
+            List<Ingredient> ingredients
+        ){
         super(id);        
         this.name=name;
         this.description = description;
         this.url = url;
+        this.ingredients.addAll(ingredients);
     }
     public void addIngredient(Ingredient ingredient){
         ingredients.add(ingredient);
@@ -36,10 +43,7 @@ public class Pizza extends EntityBase {
     }
     //static method
     public static Pizza create(String name,String description,String url,List<Ingredient> ingredients){
-        Pizza pizza = new Pizza(UUID.randomUUID(), name, description, url);
-        for (Ingredient ingredient : ingredients) {
-            pizza.ingredients.add(ingredient);
-        }
+        Pizza pizza = new Pizza(UUID.randomUUID(), name, description, url,ingredients);        
         return pizza;
     }    
     public String getName(){
