@@ -11,7 +11,7 @@ import com.example.demo.core.customexception.BadRequestException;
 @ControllerAdvice
 public class BadRequestExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<?> exceptionHandler(){
-        return ResponseEntity.badRequest().build();
+    public ResponseEntity<?> exceptionHandler(BadRequestException e){
+        return ResponseEntity.badRequest().body(e.getErrors());
     }
 }
