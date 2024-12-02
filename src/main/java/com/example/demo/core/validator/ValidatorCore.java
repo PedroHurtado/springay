@@ -11,7 +11,10 @@ public interface ValidatorCore<T>  {
     default void validateOrThrow(T instance){
         ValidationResult result =  validator().validate(instance);
         if(!result.isValid()){
-            List<ErrorResponse> errors =  result.getErrors().stream().map(e->new ErrorResponse(e.getField(), e.getMessage())).toList();
+            List<ErrorResponse> errors =  result.getErrors()
+                .stream()
+                .map(e->new ErrorResponse(e.getField(), e.getMessage()))
+                .toList();
             throw new BadRequestException(errors);
         }
     }
