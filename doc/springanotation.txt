@@ -1,0 +1,10 @@
+@PostMapping ->Post
+@GetMapping->Get
+@PutMapping->Put
+@DeleteMapping->Delete
+
+@RequestBody->Body
+@PathVaiable-> /ingredients/{id}->id
+
+@RestControler
+@Component->@Service, @Repository
