@@ -5,6 +5,8 @@
 
 @RequestBody->Body
 @PathVaiable-> /ingredients/{id}->id
+@RequestParams
+@RequestHeaders(<name>)
 
 @RestControler
 @Component->@Service, @Repository
