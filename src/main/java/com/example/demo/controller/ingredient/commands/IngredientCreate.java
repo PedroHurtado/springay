@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import br.com.fluentvalidator.*;
 
-import static br.com.fluentvalidator.predicate.LogicalPredicate.not;
-import static br.com.fluentvalidator.predicate.ObjectPredicate.nullValue;
-import static br.com.fluentvalidator.predicate.ComparablePredicate.greaterThan;
+import static br.com.fluentvalidator.predicate.LogicalPredicate.*;
+import static br.com.fluentvalidator.predicate.ObjectPredicate.*;
+import static br.com.fluentvalidator.predicate.ComparablePredicate.*;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
@@ -95,10 +95,7 @@ public class IngredientCreate {
                     .withFieldName("cost");
         }
 
-        @Override
-        public Validator<Request> validator() {
-            return this;
-        }
+       
 
     }
 
