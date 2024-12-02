@@ -1,4 +1,4 @@
-package com.example.demo.controller.ingredient;
+package com.example.demo.controller.ingredient.commands;
 
 import java.util.UUID;
 
