@@ -6,7 +6,7 @@ import br.com.fluentvalidator.Validator;
 import br.com.fluentvalidator.context.ValidationResult;
 
 public interface ValidatorCore<T>  {
-    default void validateOrTrhow(T instance){
+    default void validateOrThrow(T instance){
         ValidationResult result =  validator().validate(instance);
         if(!result.isValid()){
             throw new BadRequestException();

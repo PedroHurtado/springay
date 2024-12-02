@@ -66,7 +66,7 @@ public class IngredientCreate {
         @Override
         public Response handler(Request req) {
 
-            validator.validateOrTrhow(req);
+            validator.validateOrThrow(req);
 
             Ingredient ingredient = Ingredient.create(req.name(), req.cost());
             repository.add(ingredient);
