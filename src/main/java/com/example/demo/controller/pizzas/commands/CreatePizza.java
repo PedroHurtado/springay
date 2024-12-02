@@ -25,13 +25,11 @@ public class CreatePizza {
             String description,
             String url,
             List<UUID> ingredients) {
-
     }
 
     public record ResponseIngredient(
             UUID id,
             String name) {
-
     }
 
     public record Response(
@@ -41,7 +39,6 @@ public class CreatePizza {
             String url,
             double price,
             List<ResponseIngredient> ingredients
-
     ) {
     }
 
@@ -54,10 +51,8 @@ public class CreatePizza {
         @PostMapping("/pizzas")
         public ResponseEntity<?> handler(@RequestBody Request request) {
             Response response = service.handler(request);              
-            return ResponseEntity.status(201).body(response);
-            
+            return ResponseEntity.status(201).body(response);   
         }
-        
     }
 
     public interface Service {
@@ -82,20 +77,23 @@ public class CreatePizza {
         @Override
         public Response handler(Request request) {
             
+            //Validando ingredients
             List<Ingredient> ingredients = new ArrayList<>();
 
             for (UUID ingredient : request.ingredients()) {
                 ingredients.add(repositoryIngredient.get(ingredient));
             }
-
+            //Creando una pizza
             Pizza pizza = Pizza.create(
                     request.name(),
                     request.description(),
                     request.url(),
                     ingredients);
 
+            //guardando la pizza en la bb.dd
             repository.add(pizza);
-            
+
+            //generando el response
             return new Response(
                     pizza.getId(), 
                     pizza.getName(),
