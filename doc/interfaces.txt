@@ -1,0 +1,27 @@
+interfaces(es un contrato)
+	functional->una interface con un solo metodo abstracto
+		   implementación->si
+		   como se puede instanciar
+			1. implementada en una clase
+			2. mediante una lambda expresion
+
+		   public interface Foo{
+                       void add();
+                   }
+		   class FooImpl implements Foo{
+                      void add(){}
+                   }
+
+		   Foo foo = new FooImpl()
+                   Foo foo = ()->{}
+	metodo abstracto
+		interface Foo{
+                     void add();
+                }
+	default method
+		interface Foo{
+                   default add(){}
+                }
+
+	100 clases que implementan Foo
+	¿Tu quieres implementar Foo 100 veces?
