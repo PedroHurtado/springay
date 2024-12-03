@@ -1,0 +1,59 @@
+ORM->Objet Relation Mapping
+Objetos->BB.DD
+pizza={
+    id,description,url,price
+    ingredients:[{id,name,cost}]
+}
+¿Cuantas tablas tenemos que tener?
+
+    pizzas                              ingredients
+    1(...)        pizzas-ingredients     1(...)
+                                         2(...) 
+                        1   1
+                        1   2
+impedance_mismatch
+https://en.wikipedia.org/wiki/Object%E2%80%93relational_impedance_mismatch
+Tipos de datos->String->Varchar(50)
+                Soporta null->Varchar(50) not null
+Hibernate
+
+Patrones utilizan en las bb.dd
+
+1. Repository Patter
+    add,update,remove,get(id)
+2. Unit of Work(UOW)
+    save()->saveChanges()
+
+    try{
+        connection.open()
+        begin trans
+        instrucciones insert,update,remove
+        commit trans
+    }
+    catch(exception es){
+        rollback tran
+    }
+    finally{
+        connection.close()
+    }
+
+Repository->UOW
+
+    Traking
+
+    add->Objet->Insert
+    get->Object->Pending
+        Update->Object->Object.name"Pedro"->Update
+    get->Object->Pending
+        Remove->remove->Delete
+
+Dialectos       (insert,update,delete)
+    Sql Server
+    Oracle Server
+    PostGre
+    MySql
+
+CodeFirst->Primero código y después bb.dd
+    Orientado al dominio
+DatabaseFirst->Primero hemos creado la bb.dd y después los objetos
+    Clases anemicas->sin negocio

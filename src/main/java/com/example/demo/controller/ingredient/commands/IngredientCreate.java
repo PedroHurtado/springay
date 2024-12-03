@@ -52,12 +52,12 @@ public class IngredientCreate {
     @Component
     private class ServiceImpl implements Service {
 
-        private final Add<Ingredient> repository;
+        private final Add<Ingredient,UUID> repository;
         private final ValidatorCore<Request> validator;
 
         @SuppressWarnings("unused")
         public ServiceImpl(
-                final Add<Ingredient> repository,
+                final Add<Ingredient,UUID> repository,
                 final ValidatorCore<Request> validator) {
             this.repository = repository;
             this.validator = validator;

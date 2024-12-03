@@ -2,11 +2,17 @@ package com.example.demo.domain;
 
 import java.util.UUID;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Ingredient extends EntityBase {
     
     private String name;
     private Double cost;
 
+    protected Ingredient(){
+        
+    }
     protected Ingredient(UUID id,String name,Double cost){
         super(id);        
         this.name =  name;

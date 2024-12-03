@@ -4,11 +4,9 @@ import com.example.demo.core.customexception.NotFounException;
 import com.example.demo.domain.EntityBase;
 
 
-public interface Get<T extends EntityBase, ID> extends Collection<T> {
+public interface Get<T extends EntityBase, ID> extends Collection<T,ID> {
     default T get(ID id) {
-               return getData().stream()
-                .filter(e -> e.getId().equals(id))
-                .findFirst()
+               return getData().findById(id)                
                 .orElseThrow(() -> {
                     throw new NotFounException();
                 });

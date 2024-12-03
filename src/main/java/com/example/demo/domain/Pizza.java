@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+
+@Entity
 public class Pizza extends EntityBase {
 
     //constante
@@ -13,8 +17,12 @@ public class Pizza extends EntityBase {
     private String name;
     private String description;
     private String url;
+    @ManyToMany
     private Set<Ingredient> ingredients = new HashSet<>();
 
+    protected Pizza(){
+        
+    }
     //constructor protected para no poder crear instancias
     //sino es por el metodo static interno(create)
     protected Pizza(

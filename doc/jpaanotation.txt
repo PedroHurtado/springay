@@ -1,0 +1,22 @@
+@Entity
+@Id
+@Column
+@MappedSuperclass (Poder heredar de una clase base)
+
+Relaciones
+
+@ManyToMany ->Pizza+Ingredient+Pizza_Ingredient
+@OneToMany -> Factura+Detalle
+@OneToOne-> Comentarios+User
+
+Pizzas.Ingredients
+Factura.Detalle
+Comment.User
+
+Relaciones podían ser bidirecionales
+
+NO HACERLAS NUNCA
+
+Ingredients.Pizza(n)
+Detalle.Factura(n)
+Uer.Commentarios(n)

@@ -4,7 +4,6 @@ import com.example.demo.domain.EntityBase;
 
 public interface Update<T extends EntityBase,ID> extends Get<T,ID> {
     default void update(T entity){
-        getData().remove(entity);
-        getData().add(entity);
+       getData().save(entity);
     }
 }

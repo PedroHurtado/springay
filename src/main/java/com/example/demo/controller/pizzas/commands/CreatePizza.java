@@ -64,11 +64,11 @@ public class CreatePizza {
     public class ServiceImpl implements Service {
 
         private final Get<Ingredient, UUID> repositoryIngredient;
-        private final Add<Pizza> repository;
+        private final Add<Pizza,UUID> repository;
 
         public ServiceImpl(
             final Get<Ingredient, UUID> repositoryIngredient,
-            final Add<Pizza> repository
+            final Add<Pizza,UUID> repository
         ) {
             this.repositoryIngredient = repositoryIngredient;
             this.repository = repository;

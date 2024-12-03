@@ -1,20 +1,25 @@
 package com.example.demo.infraestructure;
 
-import java.util.HashSet;
-import java.util.Set;
 
-import org.springframework.stereotype.Component;
+import java.util.UUID;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.example.demo.domain.Pizza;
 import com.example.demo.domain.PizzaRepository;
 
-@Component
+@Repository
 public class RepositoryPizzaImpl implements PizzaRepository {
 
-    private static Set<Pizza> pizzas = new HashSet<>();
+    private final RepositoryPizzaJpa repository;
+    public RepositoryPizzaImpl(final RepositoryPizzaJpa repository){
+        this.repository = repository;
+    }
+    
     @Override
-    public Set<Pizza> getData() {
-        return pizzas;
+    public JpaRepository<Pizza,UUID> getData() {
+        return repository;
     }
     
 }
